@@ -5,6 +5,9 @@
  */
 package WS;
 
+import ModelBeans.BeansUsuario;
+import ModelDao.UsuarioDao;
+import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -19,8 +22,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author ander
  */
-@Path("generic")
-public class GenericResource {
+@Path("webService")
+public class webService {
 
     @Context
     private UriInfo context;
@@ -28,11 +31,11 @@ public class GenericResource {
     /**
      * Creates a new instance of GenericResource
      */
-    public GenericResource() {
+    public webService() {
     }
 
     /**
-     * Retrieves representation of an instance of WS.GenericResource
+     * Retrieves representation of an instance of WS.webService
      * @return an instance of java.lang.String
      */
     @GET
@@ -40,9 +43,26 @@ public class GenericResource {
     public String getJson() {
        return "meu web service";
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("usuario/insert")
+    public String insertUsuario(){
+        
+        UsuarioDao u = new UsuarioDao();
+        BeansUsuario mod = new BeansUsuario();
+        
+        mod.setNome("marcela");
+        mod.setEmail("marcela@marcela.com");
+        mod.setSenha("123");
+        u.salvar(mod);
+        
+        Gson g = new Gson();
+        return g.toJson(mod);
+    }
 
     /**
-     * PUT method for updating or creating an instance of GenericResource
+     * PUT method for updating or creating an instance of webService
      * @param content representation for the resource
      */
     @PUT
