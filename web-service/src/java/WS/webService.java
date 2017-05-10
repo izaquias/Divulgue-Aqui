@@ -5,7 +5,9 @@
  */
 package WS;
 
+import ModelBeans.BeansOrgao;
 import ModelBeans.BeansUsuario;
+import ModelDao.OrgaoDao;
 import ModelDao.UsuarioDao;
 import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
@@ -59,6 +61,23 @@ public class webService {
         
         Gson g = new Gson();
         return g.toJson(mod);
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("orgao/insert")
+    public String insertOrgao(){
+    
+        OrgaoDao o = new OrgaoDao();
+        BeansOrgao mod = new BeansOrgao();
+        
+        mod.setNome("compesa");
+        mod.setSenha("123");
+        o.salvar(mod);
+        
+        Gson g = new Gson();
+        return g.toJson(mod);
+        
     }
 
     /**
