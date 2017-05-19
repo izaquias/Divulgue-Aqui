@@ -28,10 +28,10 @@ public class FeedDeNoticiaDao {
         try {
             PreparedStatement pst = conex.con.prepareStatement("INSERT INTO feeddenoticia(localidade, hora, descricao, categoria, id_usuario) VALUES ( ?, ?, ?, ?, ?);");
             pst.setString(1, mod.getLocalidade());
-            pst.setDate(2, new java.sql.Date(mod.getHora().toLocalDate().hashCode()));
+            pst.setDate(2, new java.sql.Date(mod.getData().toLocalDate().hashCode()));
             pst.setString(3, mod.getDescricao());
             pst.setString(4, mod.getCategoria());
-            pst.setString(5, mod.getIdUsuario());
+            pst.setLong(5, mod.getIdUsuario());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso!!!");        
         } catch (SQLException ex) {
@@ -45,10 +45,10 @@ public class FeedDeNoticiaDao {
         try {
             PreparedStatement pst = conex.con.prepareStatement("UPDATE feeddenoticia SET localidade=?, hora=?, descricao=?, categoria=? WHERE id=?;");
             pst.setString(1, mod.getLocalidade());
-            pst.setDate(2, new java.sql.Date(mod.getHora().toLocalDate().hashCode()));
+            pst.setDate(2, new java.sql.Date(mod.getData().toLocalDate().hashCode()));
             pst.setString(3, mod.getDescricao());
             pst.setString(4, mod.getCategoria());
-            pst.setInt(5, mod.getCodigo());
+            pst.setLong(5, mod.getCodigo());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!!!");
         } catch (SQLException ex) {

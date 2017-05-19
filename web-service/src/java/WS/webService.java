@@ -12,6 +12,8 @@ import ModelDao.FeedDeNoticiaDao;
 import ModelDao.OrgaoDao;
 import ModelDao.UsuarioDao;
 import com.google.gson.Gson;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
@@ -126,23 +128,45 @@ public class webService {
     }
     ///////////////////////////FEED///////////////////////////////////
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("feed/insert")
-    public String insertFeed(){
+    public String insertFeed(String json){
     
         FeedDeNoticiaDao f = new FeedDeNoticiaDao();
         BeansFeedDeNoticia mod = new BeansFeedDeNoticia();
         
-        mod.setLocalidade("rua C");
-        mod.setHora(null);
-        mod.setDescricao("rua com buraco");
-        mod.setCategoria("pavimentação");
-        mod.setIdUsuario("1");
-        f.salvar(mod);
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();  
         
+        String localidade;
+        String descricao;
+        String categoria;
+        long idUsuario;
+     
+        try {
+            jsonObject = (JSONObject) parser.parse(json);
+            
+            localidade = (String) jsonObject.get("localidade");
+            descricao = (String) jsonObject.get("descricao");
+            categoria = (String) jsonObject.get("categoria");
+            idUsuario =  (long) jsonObject.get("idUsuario");
+            
+            mod.setLocalidade(localidade);
+            mod.setData(LocalDateTime.MAX);
+            mod.setDescricao(descricao);
+            mod.setCategoria(categoria);
+            mod.setIdUsuario(idUsuario);
+            f.salvar(mod);
+            
+          //  Gson g = new Gson();
+          //  return g.toJson(mod);
+           
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(webService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
         
-        Gson g = new Gson();
-        return g.toJson(mod);
     }
     /**
      * PUT method for updating or creating an instance of webService

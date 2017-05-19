@@ -6,6 +6,8 @@
 package ModelBeans;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -13,24 +15,36 @@ import java.sql.Date;
  */
 public class BeansFeedDeNoticia {
     
-    private int codigo;
+    private long codigo;
     private String localidade;
-    private Date hora;
+    private LocalDateTime data;
     private String descricao;
     private String categoria;
-    private String IdUsuario;
+    private long IdUsuario;
 
+    public BeansFeedDeNoticia(long codigo, String localidade, LocalDateTime data, String descricao, String categoria, long IdUsuario) {
+        this.codigo = codigo;
+        this.localidade = localidade;
+        this.data = LocalDateTime.now();
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.IdUsuario = IdUsuario;
+    }
+
+    public BeansFeedDeNoticia(){}
+
+    
     /**
      * @return the codigo
      */
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
     /**
      * @param codigo the codigo to set
      */
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -49,17 +63,17 @@ public class BeansFeedDeNoticia {
     }
 
     /**
-     * @return the hora
+     * @return the data
      */
-    public Date getHora() {
-        return hora;
+    public LocalDateTime getData() {
+        return data;
     }
 
     /**
-     * @param hora the hora to set
+     * @param data the data to set
      */
-    public void setHora(Date hora) {
-        this.hora = hora;
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 
     /**
@@ -93,14 +107,14 @@ public class BeansFeedDeNoticia {
     /**
      * @return the IdUsuario
      */
-    public String getIdUsuario() {
+    public long getIdUsuario() {
         return IdUsuario;
     }
 
     /**
      * @param IdUsuario the IdUsuario to set
      */
-    public void setIdUsuario(String IdUsuario) {
+    public void setIdUsuario(long IdUsuario) {
         this.IdUsuario = IdUsuario;
     }
     
