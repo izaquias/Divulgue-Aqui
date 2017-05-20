@@ -14,6 +14,8 @@ public class BeansOrgao {
     private int codigo;
     private String nome;
     private String senha;
+    private String pesquisaNome;
+    private long pesquisarId;
 
     /**
      * @return the codigo
@@ -55,6 +57,34 @@ public class BeansOrgao {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the pesquisaNome
+     */
+    public String getPesquisaNome() {
+        return pesquisaNome;
+    }
+
+    /**
+     * @param pesquisaNome the pesquisaNome to set
+     */
+    public void setPesquisaNome(String pesquisaNome) {
+        this.pesquisaNome = pesquisaNome;
+    }
+
+    /**
+     * @return the pesquisarId
+     */
+    public long getPesquisarId() {
+        return pesquisarId;
+    }
+
+    /**
+     * @param pesquisarId the pesquisarId to set
+     */
+    public void setPesquisarId(long pesquisarId) {
+        this.pesquisarId = pesquisarId;
     }
     
 }

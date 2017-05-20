@@ -157,11 +157,7 @@ public class webService {
             mod.setCategoria(categoria);
             mod.setIdUsuario(idUsuario);
             f.salvar(mod);
-            
-          //  Gson g = new Gson();
-          //  return g.toJson(mod);
-           
-            
+   
         } catch (ParseException ex) {
             Logger.getLogger(webService.class.getName()).log(Level.SEVERE, null, ex);
         }

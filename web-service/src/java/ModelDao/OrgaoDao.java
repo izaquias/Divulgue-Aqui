@@ -22,7 +22,7 @@ public class OrgaoDao {
      ConexaoBD conex = new ConexaoBD();
      BeansOrgao mod = new BeansOrgao();
      
-     public void salvar(BeansOrgao mod){
+    public void salvar(BeansOrgao mod){
          conex.conexao();
          
          try {
@@ -37,7 +37,7 @@ public class OrgaoDao {
          conex.desconecta();
      }
      
-     public void editar(BeansOrgao mod){
+    public void editar(BeansOrgao mod){
         
          conex.conexao();
          
@@ -54,7 +54,41 @@ public class OrgaoDao {
          conex.desconecta();
     }
      
-     public void excluir(BeansOrgao mod){
+    public BeansOrgao buscarPorId(BeansOrgao mod){
+         conex.conexao();
+         conex.executaSql("SELECT * FROM orgao WHERE id = '" + mod.getPesquisarId() + "'");
+         
+         try {
+             conex.rs.first();
+              mod.setCodigo(conex.rs.getInt("id"));
+              mod.setNome(conex.rs.getString("nome"));
+              mod.setSenha(conex.rs.getString("senha"));
+         
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "nao foi possivel buscar o orgao (orgaoDao) \n" + ex);
+         }
+         conex.desconecta();
+         return mod;    
+    }
+     
+    public BeansOrgao buscarPorNome(BeansOrgao mod){
+         conex.conexao();
+         conex.executaSql("SELECT * FROM orgao WHERE id = '" + mod.getPesquisaNome() + "'");
+         
+         try {
+             conex.rs.first();
+              mod.setCodigo(conex.rs.getInt("id"));
+              mod.setNome(conex.rs.getString("nome"));
+              mod.setSenha(conex.rs.getString("senha"));
+         
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "nao foi possivel buscar o orgao (orgaoDao) \n" + ex);
+         }
+         conex.desconecta();
+         return mod;    
+    }
+     
+    public void excluir(BeansOrgao mod){
          conex.conexao();
             
          try {

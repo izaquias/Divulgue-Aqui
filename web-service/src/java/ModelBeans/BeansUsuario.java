@@ -15,6 +15,7 @@ public class BeansUsuario {
     private String nome;
     private String email;
     private String senha;
+    private long pesquisarPorNome;
 
     /**
      * @return the codigo
@@ -70,6 +71,20 @@ public class BeansUsuario {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the pesquisarPorNome
+     */
+    public long getPesquisarPorNome() {
+        return pesquisarPorNome;
+    }
+
+    /**
+     * @param pesquisarPorNome the pesquisarPorNome to set
+     */
+    public void setPesquisarPorNome(long pesquisarPorNome) {
+        this.pesquisarPorNome = pesquisarPorNome;
     }
     
 }

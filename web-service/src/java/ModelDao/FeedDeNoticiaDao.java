@@ -9,6 +9,7 @@ import ModelBeans.BeansFeedDeNoticia;
 import ModelConection.ConexaoBD;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -37,6 +38,27 @@ public class FeedDeNoticiaDao {
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "nao foi possivel salvar (feedDeNoticiasDao)\n" + ex);
         }
+    }
+    
+    public BeansFeedDeNoticia buscarFeedPorIdDeUsuario(BeansFeedDeNoticia mod){
+        
+        conex.conexao();
+        conex.executaSql("SELECT * FROM feeddenoticia where id_usuario = '" + mod.getPesquisarPeloIdUsuario() + "'");
+        
+        try {
+            conex.rs.first();
+            mod.setCodigo(conex.rs.getLong("id"));
+            mod.setLocalidade(conex.rs.getString("localidade"));
+            mod.setDescricao(conex.rs.getString("descricao"));
+            mod.setData(conex.rs.getTimestamp("hora").toLocalDateTime());
+            mod.setCategoria(conex.rs.getString("categoria"));
+            mod.setIdUsuario(conex.rs.getLong("id_usuario"));
+        } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "nao foi possivel buscar o os feeds (feedDao) \n" + ex);
+        }
+        conex.desconecta();
+        return mod;
+        
     }
     
     public void editar(BeansFeedDeNoticia mod){        

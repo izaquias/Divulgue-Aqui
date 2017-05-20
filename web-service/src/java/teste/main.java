@@ -64,7 +64,7 @@ public class main {
             
     ///////////////////////////USUARIO-INSERIR///////////////////////////////////         
     /*        
-        String nome = "celpe";
+        String nome = "celpe20";
         String email = "celp@celp.com";
         String senha = "123";
           
@@ -105,7 +105,7 @@ public class main {
     */  
     
     ///////////////////////////feeddenoticia-INSERIR///////////////////////////////////         
-    
+    /*
         String localidade = "centro2";
         String descricao = "buraco";
         String categoria = "infra-estrutura";
@@ -146,7 +146,7 @@ public class main {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
             }
-            
+    */        
             
             
             

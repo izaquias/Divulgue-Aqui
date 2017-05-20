@@ -21,6 +21,7 @@ public class BeansFeedDeNoticia {
     private String descricao;
     private String categoria;
     private long IdUsuario;
+    private long PesquisarPeloIdUsuario;
 
     public BeansFeedDeNoticia(long codigo, String localidade, LocalDateTime data, String descricao, String categoria, long IdUsuario) {
         this.codigo = codigo;
@@ -116,6 +117,20 @@ public class BeansFeedDeNoticia {
      */
     public void setIdUsuario(long IdUsuario) {
         this.IdUsuario = IdUsuario;
+    }
+
+    /**
+     * @return the PesquisarPeloIdUsuario
+     */
+    public long getPesquisarPeloIdUsuario() {
+        return PesquisarPeloIdUsuario;
+    }
+
+    /**
+     * @param PesquisarPeloIdUsuario the PesquisarPeloIdUsuario to set
+     */
+    public void setPesquisarPeloIdUsuario(long PesquisarPeloIdUsuario) {
+        this.PesquisarPeloIdUsuario = PesquisarPeloIdUsuario;
     }
     
 }
