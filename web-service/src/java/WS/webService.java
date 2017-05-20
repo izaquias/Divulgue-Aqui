@@ -101,9 +101,7 @@ public class webService {
         
         UsuarioDao u = new UsuarioDao();
         BeansUsuario mod = new BeansUsuario();
-        
-        String id;
-        
+      
         mod.setPesquisarPorId(json);
         mod = u.buscar(mod);
         
@@ -144,6 +142,20 @@ public class webService {
         return null;
         
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("orgao/recuperar")
+    public String recuperarUnico(@QueryParam("id") Long json){
+        OrgaoDao o = new OrgaoDao();
+        BeansOrgao mod = new BeansOrgao();
+        
+        mod.setPesquisarId(json);
+        mod = o.buscarPorId(mod);
+        
+        Gson g = new Gson();
+        return g.toJson(mod);
+    }
     ///////////////////////////FEED///////////////////////////////////
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -182,12 +194,5 @@ public class webService {
         return null;
         
     }
-    /**
-     * PUT method for updating or creating an instance of webService
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+   
 }

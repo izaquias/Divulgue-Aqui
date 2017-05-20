@@ -31,7 +31,7 @@ public class main {
          
     ///////////////////////////ORGAO-INSERIR/////////////////////////////////// 
     /*  
-        String nome = "celpe";
+        String nome = "celpe10";
         String senha = "123";
           
         JSONObject jsonObject = new JSONObject();
@@ -68,10 +68,60 @@ public class main {
                 JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
             }
     */    
+     ///////////////////////////ORGAO-RECUPERAR/////////////////////////////////// 
+     /*
+        String nome ;
+        String senha;
+        long codigo = 2;
+            URL url;
+        try {
+            url = new URL("http://localhost:8084/web-service/webresources/webService/orgao/recuperar?id="+codigo);
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setRequestMethod("GET");
+          
+            int code = connection.getResponseCode();
+            System.out.println(code);
+
+            InputStream inputStrem = connection.getInputStream();
+            BufferedReader br =  new BufferedReader(new InputStreamReader(inputStrem));
             
+            String a;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((a  = br.readLine()) != null){
+             //a += br.readLine();
+             stringBuilder.append(a);
+            }
+          //  System.out.println(stringBuilder.toString());
+            connection.disconnect();
+            
+             JSONObject jsonObject;
+       
+             JSONParser parser = new JSONParser();  
+      
+            jsonObject = (JSONObject) parser.parse(stringBuilder.toString());
+            
+            codigo = (long) jsonObject.get("codigo");
+            nome = (String) jsonObject.get("nome");
+            senha = (String) jsonObject.get("senha");
+                        
+            System.out.println("o codigo é :" + codigo + " nome : " + nome 
+            + " senha : " + senha);
+
+        } catch (MalformedURLException ex) {
+            JOptionPane.showMessageDialog(null, "erro de URLException conexao ao rest ( recuperar usuario)\n" + ex);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( Recuperar usuario) \n" + ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "erro de ParseException conexao ao rest ( Recuperar usuario) \n" + ex);
+        }
+     */        
     ///////////////////////////USUARIO-INSERIR///////////////////////////////////         
+    //esta returnando codigo 204 porem inseri
     /*        
-        String nome = "celpe20";
+        String nome = "celpe30";
         String email = "celp@celp.com";
         String senha = "123";
           
@@ -110,12 +160,13 @@ public class main {
                 JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
             }
     */  
+    
     ///////////////////////////USUARIO-RECUPERAR///////////////////////////////////
     /*
         String nome ;
         String email;
         String senha;
-        long codigo = 1;
+        long codigo = 2;
             URL url;
         try {
             url = new URL("http://localhost:8084/web-service/webresources/webService/usuario/recuperar?id="+codigo);
@@ -164,8 +215,9 @@ public class main {
     */
     
     ///////////////////////////feeddenoticia-INSERIR///////////////////////////////////         
+    //esta returnando codigo 204 porem inseri
     /*
-        String localidade = "centro2";
+        String localidade = "centro3";
         String descricao = "buraco";
         String categoria = "infra-estrutura";
         long idUsuario = 1;
