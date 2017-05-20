@@ -15,7 +15,7 @@ public class BeansUsuario {
     private String nome;
     private String email;
     private String senha;
-    private long pesquisarPorNome;
+    private long pesquisarPorId;
 
     /**
      * @return the codigo
@@ -74,17 +74,17 @@ public class BeansUsuario {
     }
 
     /**
-     * @return the pesquisarPorNome
+     * @return the pesquisarPorId
      */
-    public long getPesquisarPorNome() {
-        return pesquisarPorNome;
+    public long getPesquisarPorId() {
+        return pesquisarPorId;
     }
 
     /**
-     * @param pesquisarPorNome the pesquisarPorNome to set
+     * @param pesquisarPorId the pesquisarPorId to set
      */
-    public void setPesquisarPorNome(long pesquisarPorNome) {
-        this.pesquisarPorNome = pesquisarPorNome;
+    public void setPesquisarPorId(long pesquisarPorId) {
+        this.pesquisarPorId = pesquisarPorId;
     }
     
 }

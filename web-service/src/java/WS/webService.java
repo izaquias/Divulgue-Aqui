@@ -24,6 +24,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -91,6 +92,23 @@ public class webService {
         }
         return null;
         
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("usuario/recuperar")
+    public String recuperarUsuario(@QueryParam("id") Long json){
+        
+        UsuarioDao u = new UsuarioDao();
+        BeansUsuario mod = new BeansUsuario();
+        
+        String id;
+        
+        mod.setPesquisarPorId(json);
+        mod = u.buscar(mod);
+        
+        Gson g = new Gson();
+        return g.toJson(mod);
     }
     ///////////////////////////ORGAO///////////////////////////////////
     @POST

@@ -56,7 +56,7 @@ public class UsuarioDao {
     
     public BeansUsuario buscar(BeansUsuario mod){
         conex.conexao();
-        conex.executaSql("SELECT * FROM usuario WHERE id = '" + mod.getPesquisarPorNome() + "'");
+        conex.executaSql("SELECT * FROM usuario WHERE id = '" + mod.getPesquisarPorId() + "'");
         
         try {
             conex.rs.first();
