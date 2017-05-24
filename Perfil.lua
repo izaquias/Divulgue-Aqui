@@ -12,10 +12,7 @@ local TxtEmail
 local TxtTelefone
 local TxtSenha
 local ButtonSave 
---[[
-variavel = login.StoreID()
-print(variavel)
-]]
+
 function scene:create(event)
 
 	local grupoCena = self.view 

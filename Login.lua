@@ -2,13 +2,6 @@ local widget =  require ("widget") -- para os botoes
 local composer = require ("composer") -- para as telas
 local scene = composer.newScene()
 
------------------------conectar ao banco de dados ------------------------
-local sqlite3 = require( "sqlite3" )
- 
-local path = system.pathForFile( "data.db", system.DocumentsDirectory )
-local db = sqlite3.open( path )
---------------------------------------------------------------------------
-
 local LabelUser
 local LabelPassword
 local TxtUserName
@@ -44,19 +37,7 @@ end
 
 function touchOnButtonLogin(event) -- toque no botao de login
 
-	if event.phase == "began" then
-		for row in db:nrows("SELECT * FROM usuario") do
-    	print( "Row id " .. row.id )
-
-    		if row.nome == TxtUserName.text or row.email == TxtUserName.text then
-    			if row.senha == TxtPassword.text then
-    				--print( "Row id " .. row.id )
-    			StoreID(row.id)
-    			composer.gotoScene("Logado")
-    			end
-    		end
-    	end    	
-	end
+	
 end
 
 function  registrarUsuario(event) -- toque no botao sing in 
