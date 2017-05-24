@@ -107,7 +107,7 @@ public class webService {
     
      @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("usuario/recuperarPorNome")
+    @Path("usuario/recuperarNom")
     public String recuperarUsuarioPorNome(@QueryParam("nome") String json){
         
         UsuarioDao u = new UsuarioDao();

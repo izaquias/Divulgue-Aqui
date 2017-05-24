@@ -48,7 +48,7 @@ end
 
 function registrarPublicacao( event )
 	if event.phase == "began" then
-		web:RegisteremployeeWS(textoLocalidade.text,textoDescricao.text, textoCategoria.text)
+		web:RegisterFeedWS(textoLocalidade.text,textoDescricao.text, textoCategoria.text)
 		textoDescricao.text = ""
 		textoCategoria.text = ""
 		textoLocalidade.text = ""

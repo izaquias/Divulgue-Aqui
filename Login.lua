@@ -39,7 +39,6 @@ end
 function touchOnButtonLogin(event) -- toque no botao de login
 	web:recoverUser(TxtUserName.text)
 	
-	
 end
 
 function  registrarUsuario(event) -- toque no botao sing in 

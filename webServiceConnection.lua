@@ -14,7 +14,6 @@ local function handleResponse( event )
     end
     return
 end
-
 function webService:RegisterUserWS(nome,email,senha) -- registrar usuario
 		
 		local usuario = { nome = nome, email = email, senha = senha }
@@ -30,8 +29,8 @@ function webService:RegisterUserWS(nome,email,senha) -- registrar usuario
 			params.headers = headers
 
 			params.body = jsonUsuario
-																											--login:
-		network.request( "http://localhost:8084/web-service/webresources/webService/usuario/insert", "POST", handleResponse, params )
+
+		network.request( "http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/usuario/insert", "POST", handleResponse, params )
 end
 
 function webService:recoverUser(nome) -- recuperar usuario
@@ -50,17 +49,17 @@ function webService:recoverUser(nome) -- recuperar usuario
 
 	params.body = jsonUsuario
 
-	network.request( "http://localhost:8084/web-service/webresources/webService/usuario/recuperarPorNome?nome="..nome, "GET", handleResponse, params )
+	network.request( "http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/usuario/recuperarNom?nome="..nome, "GET", handleResponse, params )
 end
  
 
 
-function webService:RegisteremployeeWS(localidade,descricao,categoria) -- registrar funcionario
+function webService:RegisterFeedWS(localidade,descricao,categoria) -- registrar feed
 		
-		local funcionario = { localidade = localidade, descricao = descricao, categoria = categoria }
+		local feed = { localidade = localidade, descricao = descricao, categoria = categoria }
 			
-			local jsonFuncionario = json.encode(funcionario)
-			print("jsonFuncionario : " .. jsonFuncionario)
+			local jsonFeed = json.encode(feed)
+			print("jsonFuncionario : " .. jsonFeed)
 			local headers = {}
 					  
 			headers["Content-Type"] = "application/json"
@@ -69,9 +68,9 @@ function webService:RegisteremployeeWS(localidade,descricao,categoria) -- regist
 
 			params.headers = headers
 
-			params.body = jsonFuncionario
+			params.body = jsonFeed
 
-		network.request( "http://localhost:8084/web-service/webresources/webService/feed/insert", "POST", handleResponse, params )
+		network.request( "http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/feed/insert", "POST", handleResponse, params )
 end
 
 return webService
