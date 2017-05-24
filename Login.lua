@@ -1,5 +1,6 @@
 local widget =  require ("widget") -- para os botoes
 local composer = require ("composer") -- para as telas
+local web = require ("webServiceConnection")
 local scene = composer.newScene()
 
 local LabelUser
@@ -27,8 +28,8 @@ function scene:create(event)
 	Buttonlogin = widget.newButton( {label="Login", x = display.contentWidth/2 -50, y = display.contentHeight/2 + 80, onPress = touchOnButtonLogin} )
 	grupoCena:insert(Buttonlogin)
 
-	ButtonSingIn = widget.newButton( {label="Cadastre-se", x = display.contentWidth/2 + 30, y = display.contentHeight/2 + 80, onPress = registrarUsuario} )
-	grupoCena:insert(ButtonSingIn)
+--	ButtonSingIn = widget.newButton( {label="Cadastre-se", x = display.contentWidth/2 + 30, y = display.contentHeight/2 + 80, onPress = registrarUsuario} )
+--	grupoCena:insert(ButtonSingIn)
 end
 
 function StoreID(id)
@@ -36,7 +37,8 @@ function StoreID(id)
 end
 
 function touchOnButtonLogin(event) -- toque no botao de login
-
+	web:recoverUser(TxtUserName.text)
+	
 	
 end
 

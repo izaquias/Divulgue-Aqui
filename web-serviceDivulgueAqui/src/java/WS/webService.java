@@ -92,18 +92,34 @@ public class webService {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("usuario/recuperar")
-    public String recuperarUsuario(@QueryParam("id") Long json){
+    @Path("usuario/recuperarPorId")
+    public String recuperarUsuarioPorId(@QueryParam("id") Long json){
         
         UsuarioDao u = new UsuarioDao();
         BeansUsuario mod = new BeansUsuario();
       
         mod.setPesquisarPorId(json);
-        mod = u.buscar(mod);
+        mod = u.buscarPorId(mod);
         
         Gson g = new Gson();
         return g.toJson(mod);
     }
+    
+     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("usuario/recuperarPorNome")
+    public String recuperarUsuarioPorNome(@QueryParam("nome") String json){
+        
+        UsuarioDao u = new UsuarioDao();
+        BeansUsuario mod = new BeansUsuario();
+      
+        mod.setPesquisarPorNome(json);
+        mod = u.buscarPorNome(mod);
+        
+        Gson g = new Gson();
+        return g.toJson(mod);
+    }
+    
     ///////////////////////////ORGAO///////////////////////////////////
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

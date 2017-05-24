@@ -54,7 +54,7 @@ public class UsuarioDao {
         conex.desconecta();
     }
     
-    public BeansUsuario buscar(BeansUsuario mod){
+    public BeansUsuario buscarPorId(BeansUsuario mod){
         conex.conexao();
         conex.executaSql("SELECT * FROM usuario WHERE id = '" + mod.getPesquisarPorId() + "'");
         
@@ -72,6 +72,23 @@ public class UsuarioDao {
         return mod;
     }
     
+     public BeansUsuario buscarPorNome(BeansUsuario mod){
+        conex.conexao();
+        conex.executaSql("SELECT * FROM usuario WHERE nome = '" + mod.getPesquisarPorNome() + "'");
+        
+        try {
+            conex.rs.first();
+            mod.setCodigo(conex.rs.getInt("id"));
+            mod.setNome(conex.rs.getString("nome"));
+            mod.setEmail(conex.rs.getString("email"));
+            mod.setSenha(conex.rs.getString("senha"));
+            
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "nao foi possivel buscar o usuario (usuarioDao) \n" + ex);
+        }
+        conex.desconecta();
+        return mod;
+    }
      public void excluir(BeansUsuario mod){
         conex.conexao();
         try {

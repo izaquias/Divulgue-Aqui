@@ -1,5 +1,6 @@
 local widget =  require ("widget") -- para os botoes
 local composer = require ("composer") -- para as telas
+local web = require ("webServiceConnection")
 local scene = composer.newScene()
 
 local campoDescricao
@@ -32,7 +33,7 @@ local publicacao =
      campoDescricao:setFillColor(0,1,0)
      grupoCena:insert( campoDescricao )
 
-     campoDia = display.newText({text = "Data", x=display.contentWidth/2, y=display.contentHeight/2 - 170, native.systemFont, 16})
+     campoDia = display.newText({text = "Categoria", x=display.contentWidth/2, y=display.contentHeight/2 - 170, native.systemFont, 16})
      campoDia:setFillColor(0,1,0)
      grupoCena:insert( campoDia )
 
@@ -40,21 +41,21 @@ local publicacao =
      campoLocalidade:setFillColor(0,1,0)
      grupoCena:insert( campoLocalidade )
 
-     botaoPublicar = widget.newButton( {label = "Publicar", x = display.contentWidth/2 - 50,y = display.contentHeight/2 + 60, native.systemFont, 20} )
+     botaoPublicar = widget.newButton( {label = "Publicar", x = display.contentWidth/2 - 50,y = display.contentHeight/2 + 60, native.systemFont, 20, onPress = registrarPublicacao} )
      grupoCena:insert( botaoPublicar )
 end
 
---[[
-function registrarPublicacao( ... )
+
+function registrarPublicacao( event )
 	if event.phase == "began" then
-		armazenarDados(textoDescricao.text, textoDia.text, textoLocalidade.text)
+		web:RegisteremployeeWS(textoLocalidade.text,textoDescricao.text, textoCategoria.text)
 		textoDescricao.text = ""
-		textoDia.text = ""
+		textoCategoria.text = ""
 		textoLocalidade.text = ""
 		composer.gotoScene("login")
 	end
 end
-]]--
+
 --local function redirecionaTelaCadastro(event)
 --	composer.gotoScene("telaCadastro")
 --end
@@ -70,8 +71,7 @@ function scene:show( event )
         -- Code here runs when the scene is entirely on screen
        
 		
-		textoDia = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 150, 200, 25 ) 
-	  textoDia.inputType = "number" --ver tipo para data no CoronaSDK
+		textoCategoria = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 150, 200, 25 ) 
 		textoLocalidade = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 100 , 200, 25 ) 
 		textoDescricao = native.newTextBox( display.contentWidth/2, display.contentHeight/2 - 10, 200, 100, native.systemFont, 200)
     textoDescricao.isEditable = true
@@ -90,7 +90,7 @@ function scene:hide( event )
     if ( phase == "will" ) then
         -- Code here runs when the scene is on screen (but is about to go off screen)
         display.remove(textoDescricao)
-	    display.remove(textoDia)
+	    display.remove(textoCategoria)
 	    display.remove(textoLocalidade)
 	    
     end

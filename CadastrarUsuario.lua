@@ -38,7 +38,7 @@ end
 function saveUser(event)
 
 	if event.phase == "began" then
-		web:RegisterCustomerWS(TxtNome.text, TxtEmail.text, TxtSenha.text)
+		web:RegisterUserWS(TxtNome.text, TxtEmail.text, TxtSenha.text)
 		TxtNome.text = ""
 		TxtEmail.text = ""
 		TxtTelefone.text = ""

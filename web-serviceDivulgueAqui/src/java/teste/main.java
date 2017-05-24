@@ -161,7 +161,7 @@ public class main {
             }
     */  
     
-    ///////////////////////////USUARIO-RECUPERAR///////////////////////////////////
+    ///////////////////////////USUARIO-RECUPERAR POR ID ///////////////////////////////////
     /*
         String nome ;
         String email;
@@ -213,7 +213,58 @@ public class main {
             JOptionPane.showMessageDialog(null, "erro de ParseException conexao ao rest ( Recuperar usuario) \n" + ex);
         }
     */
-    
+    ///////////////////////////USUARIO-RECUPERAR POR NOME ///////////////////////////////////
+    /*
+        String nome = "marcela" ;
+        String email;
+        String senha;
+        long codigo;
+            URL url;
+        try {
+            url = new URL("http://localhost:8084/web-service/webresources/webService/usuario/recuperarPorNome?nome="+nome);
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setRequestMethod("GET");
+          
+            int code = connection.getResponseCode();
+            System.out.println(code);
+
+            InputStream inputStrem = connection.getInputStream();
+            BufferedReader br =  new BufferedReader(new InputStreamReader(inputStrem));
+            
+            String a;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((a  = br.readLine()) != null){
+             //a += br.readLine();
+             stringBuilder.append(a);
+            }
+          //  System.out.println(stringBuilder.toString());
+            connection.disconnect();
+            
+             JSONObject jsonObject;
+       
+             JSONParser parser = new JSONParser();  
+      
+            jsonObject = (JSONObject) parser.parse(stringBuilder.toString());
+            
+            codigo = (long) jsonObject.get("codigo");
+            nome = (String) jsonObject.get("nome");
+            email = (String) jsonObject.get("email");
+            senha = (String) jsonObject.get("senha");
+                        
+            System.out.println("O codigo é :" + codigo + " nome : " + nome 
+            + " email : " + email + " senha : " + senha);
+
+        } catch (MalformedURLException ex) {
+            JOptionPane.showMessageDialog(null, "erro de URLException conexao ao rest ( recuperar usuario)\n" + ex);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( Recuperar usuario) \n" + ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "erro de ParseException conexao ao rest ( Recuperar usuario) \n" + ex);
+        }
+    */
     ///////////////////////////feeddenoticia-INSERIR///////////////////////////////////         
     //esta returnando codigo 204 porem inseri
     /*
