@@ -31,6 +31,13 @@ public class Pessoa implements Serializable{
 
     public Pessoa( String nome, String endereco) {
         
+        if(nome == null || nome.isEmpty()){
+            throw new IllegalArgumentException("O nome da Pessoa  deve ser Infomado com um valor válido!");
+        }
+        
+        if(endereco == null || endereco.isEmpty()){
+            throw new IllegalArgumentException("O endereço deve ser Informado Corretamente com um valor válido!");
+        }
         this.nome = nome;
         this.endereco = endereco;
     }
@@ -55,7 +62,5 @@ public class Pessoa implements Serializable{
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    
     
 }

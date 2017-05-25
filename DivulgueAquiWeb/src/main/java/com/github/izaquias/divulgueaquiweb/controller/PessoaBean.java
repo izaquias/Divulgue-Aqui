@@ -4,23 +4,25 @@ package com.github.izaquias.divulgueaquiweb.controller;
 import com.github.izaquias.divulgueaquiweb.dao.Pessoas;
 import com.github.izaquias.divulgueaquiweb.model.Pessoa;
 import java.util.List;
-import javax.annotation.ManagedBean;
+
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
 
 @ViewScoped
-@SessionScoped
+//@SessionScoped
 
 /**
  *
  * @author Izaquias
  */
-@ManagedBean(value = "pessoaBean")
+
+@ManagedBean(name = "pessoaBean")
 public class PessoaBean implements Controller{
     
     private Pessoa pessoa;
-    private Pessoas dao;
+    private Pessoas dao  = null;;
 
     @PostConstruct
     public void inicializar(){
@@ -28,9 +30,9 @@ public class PessoaBean implements Controller{
         dao = new Pessoas();
     }
     
-    public PessoaBean(Pessoa pessoa, Pessoas dao) {
-        this.pessoa = pessoa;
-        this.dao = dao;
+    public PessoaBean() {
+        pessoa = new Pessoa();
+        dao = new Pessoas();
     }
 
     public Pessoa getPessoa() {
