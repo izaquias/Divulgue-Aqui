@@ -30,7 +30,7 @@ function scene:create(event)
 --	grupoCena:insert(ButtonSingIn)
 end
 
-function storeInformation(codigo,nome,email,senha)
+function storeInformation(codigo,nome,email,senha) -- armazena as informacoes do usuario em variaves globais para poder recuperar em outras telas
 	codigoUser = codigo
 	nomeUser = nome
 	emailUser = email
@@ -38,7 +38,7 @@ function storeInformation(codigo,nome,email,senha)
 	
 end
 
-function Receivesuserinformation(codigo,nome,email,senha)
+function Receivesuserinformation(codigo,nome,email,senha) -- recebe as informacoes do usuario que veio do web service e faz a validacao para o usuario poder fazer login 
 
 	if TxtUserName.text == nome and TxtPassword.text == senha then
 		storeInformation(codigo,nome,email,senha)
@@ -47,9 +47,9 @@ function Receivesuserinformation(codigo,nome,email,senha)
 end
 
 
-function touchOnButtonLogin(event) -- toque no botao de login
+function touchOnButtonLogin(event) -- toque no botao de login/ manda a requisicao para o web service
 	if event.phase == "began" then
-		web:recoverUser(TxtUserName.text)
+		web:recoverUserWS(TxtUserName.text)
 	end
 	
 end

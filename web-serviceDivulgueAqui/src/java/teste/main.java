@@ -261,10 +261,53 @@ public class main {
             JOptionPane.showMessageDialog(null, "erro de ParseException conexao ao rest ( Recuperar usuario) \n" + ex);
         }
     */
+    ///////////////////////////USUARIO-ATUALIZAR ///////////////////////////////////
+    /*
+        String nome = "marcela";
+        String email = "marcela@gmail.com";
+        String senha = "321";
+        long codigo = 1;
+          
+        JSONObject jsonObject = new JSONObject();
+
+        //Armazena dados em um Objeto JSON
+        jsonObject.put("nome", nome);
+        jsonObject.put("email", email);
+        jsonObject.put("senha", senha);
+        jsonObject.put("codigo", codigo);
+           
+        Gson gson = new Gson();
+        String Json = gson.toJson(jsonObject);
+
+        URL url;
+        try {
+            url = new URL("http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/usuario/update");
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("PUT");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            OutputStream os = connection.getOutputStream();
+            os.write(Json.getBytes("UTF-8"));
+            os.flush();
+
+            int code = connection.getResponseCode();
+            System.out.println(code + " - " + Json);
+
+            os.close();
+            connection.disconnect();
+
+            } catch (MalformedURLException ex) {
+                JOptionPane.showMessageDialog(null, "erro de URLException conexao ao rest ( salvar cliente)\n" + ex);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
+            }
+    */
     ///////////////////////////feeddenoticia-INSERIR///////////////////////////////////         
     //esta returnando codigo 204 porem inseri
     /*
-        String localidade = "centro3";
+        String localidade = "centro4";
         String descricao = "buraco";
         String categoria = "infra-estrutura";
         long idUsuario = 1;
@@ -282,7 +325,7 @@ public class main {
 
         URL url;
         try {
-            url = new URL("http://localhost:8084/web-service/webresources/webService/feed/insert");
+            url = new URL("http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/feed/insert");
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
@@ -304,7 +347,7 @@ public class main {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
             }
-    */        
+      */      
             
             
             

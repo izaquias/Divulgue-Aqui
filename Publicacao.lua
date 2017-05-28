@@ -3,95 +3,70 @@ local composer = require ("composer") -- para as telas
 local web = require ("webServiceConnection")
 local scene = composer.newScene()
 
-local campoDescricao
-local textoDescricao
+local labelDescricao
+local txtDescricao
 
-local campoDia
-local textoDia
+local labelLocalidade
+local txtLocalidade
 
-local campoLocalidade
-local textoLocalidade
-
-local botaoPublicar
-local texto 
-local campoPublicar
-local publicacao = 
-{
-  {
-  id,
-  descricao,
-  dia,
-  localidade
-  }
-}
+local buttonPublish -- botao de publicar
 
  function scene:create(event)
 
 	local grupoCena = self.view 
 
-     campoDescricao = display.newText({text = "Descricao", x=display.contentWidth/2, y=display.contentHeight/2 - 70, native.systemFont, 16})
-     campoDescricao:setFillColor(0,1,0)
-     grupoCena:insert( campoDescricao )
+     labelDescricao = display.newText({text = "Descricao", x=display.contentWidth/2, y=display.contentHeight/2 - 70, native.systemFont, 16})
+     labelDescricao:setFillColor(0,1,0)
+     grupoCena:insert( labelDescricao )
 
-     campoDia = display.newText({text = "Categoria", x=display.contentWidth/2, y=display.contentHeight/2 - 170, native.systemFont, 16})
-     campoDia:setFillColor(0,1,0)
-     grupoCena:insert( campoDia )
+     labelCategoria = display.newText({text = "Categoria", x=display.contentWidth/2, y=display.contentHeight/2 - 170, native.systemFont, 16})
+     labelCategoria:setFillColor(0,1,0)
+     grupoCena:insert( labelCategoria )
 
-     campoLocalidade = display.newText({text = "Local", x=display.contentWidth/2,y=display.contentHeight/2 - 120, native.systemFont, 16})
-     campoLocalidade:setFillColor(0,1,0)
-     grupoCena:insert( campoLocalidade )
+     labelLocalidade = display.newText({text = "Local", x=display.contentWidth/2,y=display.contentHeight/2 - 120, native.systemFont, 16})
+     labelLocalidade:setFillColor(0,1,0)
+     grupoCena:insert( labelLocalidade )
 
-     botaoPublicar = widget.newButton( {label = "Publicar", x = display.contentWidth/2 - 50,y = display.contentHeight/2 + 60, native.systemFont, 20, onPress = registrarPublicacao} )
-     grupoCena:insert( botaoPublicar )
+     buttonPublish = widget.newButton( {label = "Publicar", x = display.contentWidth/2 - 50,y = display.contentHeight/2 + 60, native.systemFont, 20, onPress = registrarPublicacao} )
+     grupoCena:insert( buttonPublish )
 end
-
-
-function registrarPublicacao( event )
-	if event.phase == "began" then
-		web:RegisterFeedWS(textoLocalidade.text,textoDescricao.text, textoCategoria.text)
-		textoDescricao.text = ""
-		textoCategoria.text = ""
-		textoLocalidade.text = ""
-		composer.gotoScene("login")
-	end
-end
-
---local function redirecionaTelaCadastro(event)
---	composer.gotoScene("telaCadastro")
---end
-
 
 
 function scene:show( event )
  
-   -- local grupoCena = self.view
-    local phase = event.phase
+ local phase = event.phase
  
-    if ( phase == "did" ) then
-        -- Code here runs when the scene is entirely on screen
-       
-		
-		textoCategoria = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 150, 200, 25 ) 
-		textoLocalidade = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 100 , 200, 25 ) 
-		textoDescricao = native.newTextBox( display.contentWidth/2, display.contentHeight/2 - 10, 200, 100, native.systemFont, 200)
-    textoDescricao.isEditable = true
-    --textoDescricao.isFontSizeScaled = true
-    textoDescricao.size  = 14
-		 			
-    end
-
+    if ( phase == "will" ) then
+		txtCategoria = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 150, 200, 25 ) 
+		txtLocalidade = native.newTextField(display.contentWidth/2, display.contentHeight/2 - 100 , 200, 25 ) 
+		txtDescricao = native.newTextBox( display.contentWidth/2, display.contentHeight/2 - 10, 200, 100, native.systemFont, 200)
+    txtDescricao.isEditable = true
+    txtDescricao.size  = 14
+		end 			
+    
 end
  
+
+function registrarPublicacao( event )
+  if event.phase == "began" then
+    web:RegisterFeedWS(txtLocalidade.text,txtDescricao.text, txtCategoria.text, codigoUser)
+  --  txtDescricao.text = ""
+  --  txtCategoria.text = ""
+  --  txtLocalidade.text = ""
+    composer.gotoScene("Logado")
+  end
+end
+
 function scene:hide( event )
  
    -- local sceneGroup = self.view
-    local phase = event.phase
+   local phase = event.phase
  
     if ( phase == "will" ) then
         -- Code here runs when the scene is on screen (but is about to go off screen)
-        display.remove(textoDescricao)
-	    display.remove(textoCategoria)
-	    display.remove(textoLocalidade)
+      display.remove(txtDescricao)
+	    display.remove(txtCategoria)
+	    display.remove(txtLocalidade)
 	    
     end
 end

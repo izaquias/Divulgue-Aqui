@@ -61,7 +61,7 @@ public class webService {
         UsuarioDao u = new UsuarioDao();
         BeansUsuario mod = new BeansUsuario();
         
-         JSONObject jsonObject;
+        JSONObject jsonObject;
         JSONParser parser = new JSONParser();  
         
         String nome;
@@ -119,6 +119,47 @@ public class webService {
         Gson g = new Gson();
         return g.toJson(mod);
     }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("usuario/update")
+    public String updateUsuario(String json){
+        
+        UsuarioDao u = new UsuarioDao();
+        BeansUsuario mod = new BeansUsuario();
+        
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();  
+        
+        String nome;
+        String email;
+        String senha;
+        long codigo;
+	
+        
+        try {
+            jsonObject = (JSONObject) parser.parse(json);
+            
+            nome = (String) jsonObject.get("nome");
+            email = (String)jsonObject.get("email");
+            senha = (String) jsonObject.get("senha");
+            codigo = (long) jsonObject.get("codigo");
+            
+            
+            mod.setNome(nome);
+            mod.setEmail(email);
+            mod.setSenha(senha);
+            mod.setCodigo((int)codigo);
+            u.editar(mod);           
+           
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(webService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
+    
     
     ///////////////////////////ORGAO///////////////////////////////////
     @POST

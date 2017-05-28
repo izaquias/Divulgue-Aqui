@@ -2,6 +2,7 @@ local widget =  require ("widget")
 local composer = require ("composer")
 local scene = composer.newScene()
 local login = require ("Login")
+local web = require ("webServiceConnection")
 
 local LabelNome
 local LabelEmail
@@ -28,16 +29,15 @@ function scene:create(event)
 	LabelSenha = display.newText({text="Senha :",x=display.contentWidth/2 - 115,y=display.contentHeight/2 - 100})	
 	grupoCena:insert(LabelSenha)
 
-	ButtonSave =  widget.newButton( {label="save", x = display.contentWidth/2 + 100, y = display.contentHeight/2, onPress = alterarDadosUsuario } )
+	ButtonSave =  widget.newButton( {label="save", x = display.contentWidth/2 + 100, y = display.contentHeight/2, onPress = updateUser } )
 	grupoCena:insert(ButtonSave)
 end
 
 function scene:show(event)
-	print("entrou")
-	print(nome)
+
 	if event.phase == "did" then
 		TxtNome = native.newTextField(display.contentWidth/2 + 5, display.contentHeight/2 - 200, 200, 25 )
-		TxtNome,text = nomeUser 
+		TxtNome.text = nomeUser 
 		TxtEmail = native.newTextField(display.contentWidth/2 + 5, display.contentHeight/2 - 150, 200, 25 ) 
 		TxtEmail.text = emailUser
 		TxtSenha = native.newTextField(display.contentWidth/2 + 15, display.contentHeight/2 - 100, 178, 25 )
@@ -45,8 +45,11 @@ function scene:show(event)
 	end
 end
 
-function alterarDadosUsuario(codigo,nome,email,senha)
+function updateUser(event)
 
+	if event.phase == "began" then
+		web:updateUserWS(codigoUser, TxtNome.text, TxtEmail.text, TxtSenha.text)
+	end
 end
 function scene:hide(event)	
 	display.remove(TxtNome)
