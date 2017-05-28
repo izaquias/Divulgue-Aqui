@@ -25,32 +25,29 @@ function scene:create(event)
 	grupoCena:insert(LabelEmail)
 
 
-	LabelTelefone = display.newText({text="Telefone :",x=display.contentWidth/2 - 115,y=display.contentHeight/2 - 100})	
-	grupoCena:insert(LabelTelefone)
-
-
-	LabelSenha = display.newText({text="Senha :",x=display.contentWidth/2 - 120,y=display.contentHeight/2 - 50})
+	LabelSenha = display.newText({text="Senha :",x=display.contentWidth/2 - 115,y=display.contentHeight/2 - 100})	
 	grupoCena:insert(LabelSenha)
-
 
 	ButtonSave =  widget.newButton( {label="save", x = display.contentWidth/2 + 100, y = display.contentHeight/2, onPress = alterarDadosUsuario } )
 	grupoCena:insert(ButtonSave)
 end
 
-local function alterarDadosUsuario( ... )
-	--recuperar dados do usuario para alterar
-end
-
 function scene:show(event)
+	print("entrou")
+	print(nome)
 	if event.phase == "did" then
-		TxtNome = native.newTextField(display.contentWidth/2 + 5, display.contentHeight/2 - 200, 200, 25 ) 
+		TxtNome = native.newTextField(display.contentWidth/2 + 5, display.contentHeight/2 - 200, 200, 25 )
+		TxtNome,text = nomeUser 
 		TxtEmail = native.newTextField(display.contentWidth/2 + 5, display.contentHeight/2 - 150, 200, 25 ) 
-		TxtTelefone = native.newTextField(display.contentWidth/2 + 15, display.contentHeight/2 - 100, 178, 25 ) 
-		TxtTelefone.inputType = "number"
-		TxtSenha = native.newTextField(display.contentWidth/2 + 9, display.contentHeight/2 - 50, 190, 25 ) 
+		TxtEmail.text = emailUser
+		TxtSenha = native.newTextField(display.contentWidth/2 + 15, display.contentHeight/2 - 100, 178, 25 )
+		TxtSenha.text = senhaUser 
 	end
 end
 
+function alterarDadosUsuario(codigo,nome,email,senha)
+
+end
 function scene:hide(event)	
 	display.remove(TxtNome)
 	display.remove(TxtEmail)

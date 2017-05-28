@@ -9,8 +9,6 @@ local TxtUserName
 local TxtPassword
 local Buttonlogin
 local ButtonSingIn
-local storeID -- armazenar id
-
 
 function scene:create(event)
 	
@@ -32,12 +30,27 @@ function scene:create(event)
 --	grupoCena:insert(ButtonSingIn)
 end
 
-function StoreID(id)
-	return id
+function storeInformation(codigo,nome,email,senha)
+	codigoUser = codigo
+	nomeUser = nome
+	emailUser = email
+	senhaUser = senha
+	
 end
 
+function Receivesuserinformation(codigo,nome,email,senha)
+
+	if TxtUserName.text == nome and TxtPassword.text == senha then
+		storeInformation(codigo,nome,email,senha)
+		composer.gotoScene("Logado")
+	end
+end
+
+
 function touchOnButtonLogin(event) -- toque no botao de login
-	web:recoverUser(TxtUserName.text)
+	if event.phase == "began" then
+		web:recoverUser(TxtUserName.text)
+	end
 	
 end
 

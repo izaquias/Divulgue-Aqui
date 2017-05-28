@@ -7,8 +7,9 @@ local function handleResponse( event )
 
     if not event.isError then
         local response = json.decode( event.response )
-        print( "erro : " .. event.response )
-        print(response.email)
+    --    print( "erro : " .. event.response )
+       	
+        Receivesuserinformation(response.codigo,response.nome,response.email,response.senha)
     else
         print( "Error" )
     end
@@ -51,15 +52,13 @@ function webService:recoverUser(nome) -- recuperar usuario
 
 	network.request( "http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/usuario/recuperarNom?nome="..nome, "GET", handleResponse, params )
 end
- 
-
 
 function webService:RegisterFeedWS(localidade,descricao,categoria) -- registrar feed
 		
 		local feed = { localidade = localidade, descricao = descricao, categoria = categoria }
 			
 			local jsonFeed = json.encode(feed)
-			print("jsonFuncionario : " .. jsonFeed)
+			print("jsonFeed : " .. jsonFeed)
 			local headers = {}
 					  
 			headers["Content-Type"] = "application/json"
