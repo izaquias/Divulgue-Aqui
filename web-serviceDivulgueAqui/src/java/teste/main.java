@@ -116,8 +116,8 @@ public class main {
      */        
     ///////////////////////////USUARIO-INSERIR///////////////////////////////////         
     //esta returnando codigo 204 porem inseri
-    /*        
-        String nome = "celpe30";
+            
+        String nome = "celpe300";
         String email = "celp@celp.com";
         String senha = "123";
           
@@ -133,7 +133,7 @@ public class main {
 
         URL url;
         try {
-            url = new URL("http://localhost:8084/web-service/webresources/webService/usuario/insert");
+            url = new URL("http://localhost:8084/web-serviceDivulgueAqui/webresources/webService/usuario/insert");
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
@@ -155,7 +155,7 @@ public class main {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "erro de IOException conexao ao rest ( salvar cliente) \n" + ex);
             }
-    */  
+      
     
     ///////////////////////////USUARIO-RECUPERAR POR ID ///////////////////////////////////
     /*
