@@ -31,8 +31,8 @@ public class PessoaBean implements Controller{
     }
     
     public PessoaBean() {
-        pessoa = new Pessoa();
-        dao = new Pessoas();
+       // pessoa = new Pessoa();
+        //dao = new Pessoas();
     }
 
     public Pessoa getPessoa() {
@@ -56,7 +56,7 @@ public class PessoaBean implements Controller{
     @Override
     public String salvar() {
         dao.inserir(pessoa);
-        return "";
+        return "index.html";
     }
 
     @Override

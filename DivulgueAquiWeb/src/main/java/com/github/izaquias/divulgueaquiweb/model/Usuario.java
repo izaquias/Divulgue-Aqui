@@ -1,6 +1,7 @@
 
 package com.github.izaquias.divulgueaquiweb.model;
 
+import com.github.izaquias.divulgueaquiweb.excecoes.UsuarioMenorDeIdadeException;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,13 +16,13 @@ import javax.persistence.Id;
 @Entity
 public class Usuario implements Serializable{
     @Id
-    @GeneratedValue//(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)//add 50+ 
     private long id;
-    @Column(length = 35, nullable = false)
+    @Column(length = 50, nullable = false)
     private String nome;
-    @Column(length = 35, nullable = false)
+    @Column(length = 50, nullable = false)
     private String email;
-    @Column(length = 35, nullable = false)
+    @Column(length = 50, nullable = false)
     private String senha;
     @Column(length = 3, nullable = false)
     private int idade;
@@ -31,7 +32,18 @@ public class Usuario implements Serializable{
 
     
     public Usuario( String nome, String email, String senha, int idade) {
-        
+        if(nome == null || nome.isEmpty()){
+            throw new IllegalArgumentException("O nome do Usuário deve ser informado corretamente!");
+        }
+        if(email == null || email.isEmpty()){
+            throw new IllegalArgumentException("O email do Usuário deve ser preenchido corretamente!");
+        }
+        if(senha == null || senha.isEmpty()){
+            throw new IllegalArgumentException("A senha do usuário deve ser informada corretamente!");
+        }
+        if(idade < 18){
+            throw new UsuarioMenorDeIdadeException();
+        }
         this.nome = nome;
         this.email = email;
         this.senha = senha;

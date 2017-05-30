@@ -10,7 +10,7 @@
     <name>DivulgueAquiWeb</name>
 
     <properties>
-        <!--<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>-->
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
@@ -95,9 +95,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-<!--                    <compilerArguments>
+                    <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>-->
+                    </compilerArguments>
                 </configuration>
             </plugin>
             <plugin>
@@ -108,7 +108,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.0</version>
@@ -132,7 +132,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 

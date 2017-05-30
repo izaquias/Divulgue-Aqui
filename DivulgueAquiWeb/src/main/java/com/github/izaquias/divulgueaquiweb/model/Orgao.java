@@ -18,9 +18,9 @@ public class Orgao implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Column(length = 35, nullable = false)
+    @Column(length = 50, nullable = false)
     private String nome;
-    @Column(length = 40, nullable = false)
+    @Column(length = 50, nullable = false)
     private String endereco;
     
     @OneToMany
